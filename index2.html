@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Codecool e-mail signature generator</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/sandstone/bootstrap.min.css" rel="stylesheet" integrity="sha384-QqZs0aSOGFan3GWVdP4PyCBp6icaF/4n8Q+wsmZUTiiVIqE4r4tFYcb8Osf+8y45" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="text-center">E-mail signature generator</h1>
+        <div class="row">
+            <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-0">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Generator options</h3>
+                    </div>
+                    <div class="panel-body">
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <label for="inputCompanyDepartment" class="col-sm-4 control-label">Codecool Department</label>
+                                <div class="col-sm-8">
+                                    <select class="form-control" id="inputCompanyDepartment">
+                                        <option selected="selected" value="">-</option>
+                                        <option value="https://user-images.githubusercontent.com/5325157/151368918-31e2c32c-1d3f-4dd9-a8ae-a7bfea5e0297.png">Codecool</option>
+                                        <option value="https://user-images.githubusercontent.com/5325157/151367155-7ab92c23-59cf-475c-91fe-6395fd237da7.png">Codecool Business (Sales)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputName" class="col-sm-4 control-label">
+                                    Name<br>
+                                    <small>Ex.: Firstname LASTNAME</small>
+                                </label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="inputName" value="Walter WHITE" placeholder="Walter WHITE">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputTitle" class="col-sm-4 control-label">Title</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="inputTitle" value="Mentor @Budapest" placeholder="Mentor @Budapest">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputPhone" class="col-sm-4 control-label">Phone</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="inputPhone" value="+36 20 123 45 67" placeholder="+36 20 123 45 67">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputCompanyName" class="col-sm-4 control-label">Company name</label>
+                                <div class="col-sm-8">
+                                    <select class="form-control" id="inputCompanyName">
+                                        <option selected="selected">Codecool</option>
+                                        <option>Codecool Kft.</option>
+                                        <option>Codecool Poland Sp. z o.o.</option>
+                                        <option>Codecool Romania</option>
+                                        <option>Codecool Austria GmbH</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputAddress" class="col-sm-4 control-label">Address</label>
+                                <div class="col-sm-8">
+                                    <select class="form-control" id="inputAddress">
+                                        <option selected="selected" value="">-</option>
+                                        <option>1065 Budapest, Nagymez&odblac; u. 44</option>
+                                        <option>30-710 Kraków, ul. Ślusarska 9</option>
+                                        <option>Al. Jerozolimskie 100, 00-807 Warsaw</option>
+                                        <option>020797 Bucharest, 4-6 Semilunei Street.</option>
+                                        <option>Liechtensteinstr. 111/115; 1090 Wien</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputTLD" class="col-sm-4 control-label">Codecool TLD</label>
+                                <div class="col-sm-8">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">www.codecool.</span>
+                                        <select class="form-control" id="inputTLD">
+                                            <option>com</option>
+                                            <option>at</option>
+                                            <option selected="selected">hu</option>
+                                            <option>pl</option>
+                                            <option>ro</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="submit" class="btn btn-primary pull-right" name="button" value="Re-generate" />
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-4 col-md-offset-0">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            Preview
+                            <button class="btn btn-primary pull-right btn-xs" data-clipboard-target="#preview">&nbsp;Copy to clipboard&nbsp;</button>
+                        </h3>
+                    </div>
+                    <div class="panel-body" id="preview">
+                        Basic panel example
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.8/clipboard.min.js"></script>
+    <script type="text/javascript">
+        var generateSignature = function() {
+            var ret = '',
+                data = {
+                    logoSrc : $('#inputCompanyDepartment').val(),
+                    name: $('#inputName').val(),
+                    title: $('#inputTitle').val(),
+                    phone: $('#inputPhone').val(),
+                    email: $('#inputEmail').val(),
+                    company: $('#inputCompanyName').val(),
+                    address: $('#inputAddress').val(),
+                    tld: $('#inputTLD').val()
+                };
+                console.log($('#inputCompanyDepartment').val());
+
+            ret += '<table border="0" cellpadding="0" width="470" style="table-layout:fixed">';
+            ret += '<tbody>';
+            ret += '<tr>';
+            ret += '<td align="center" valign="middle" width="85">';
+            ret += '<p style="margin-right: 10px; font-family: Helvetica, Arial, sans-serif; font-size: 10px; line-height: 12px; margin-bottom: 10px>';
+            ret += '<a style="text-decoration:none" href="http://codecool.hu">';
+            ret += '<img src="' + data.logoSrc + '" alt="Codecool Kft." border="0" height="75" width="75"">';
+            ret += '</a>';
+            ret += '</p>';
+            ret += '</td>';
+            ret += '<td align="left" nowrap="nowrap" width="370">';
+            ret += '<p style="font-family: Helvetica, Arial, sans-serif; font-size: 10px; line-height: 12px; color: rgb(33, 33, 33); margin-bottom: 10px;">';
+            ret += '<span style="font-weight: bold; font-size: 12px; color: rgb(33, 33, 33); display: inline;">' + data.name + '</span><br>';
+            if (data.title) {
+                ret += '<span style="color: rgb(33, 33, 33); display: inline;">' + data.title + '</span><br>';
+            }
+            if (data.phone) {
+                ret += '<span style="color: rgb(33, 33, 33); display: inline;">' + data.phone + '</span>';
+            }
+            ret += '</p>';
+            ret += '<p style="font-family: Helvetica, Arial, sans-serif; font-size: 10px; line-height: 12px; margin-bottom: 10px;">';
+            ret += '<span style="font-weight: bold; color: rgb(33, 33, 33); display: inline;">' + data.company + '</span>';
+            if (data.address) {
+                ret += '<br><span style="color: rgb(33, 33, 33); display: inline;">' + data.address + '</span>';
+            }
+            ret += '<span style="display: inline;"><br></span>';
+            ret += '<a href="http://www.codecool.' + data.tld + '" style="color: rgb(71, 124, 204); text-decoration: none; display: inline;">www.codecool.' + data.tld + '</a>';
+            ret += '</p>';
+            ret += '</td>';
+            ret += '</tr>';
+            ret += '</tbody>';
+            ret += '</table>';
+
+            window.signature = ret;
+            return ret;
+        };
+
+        $(function() {
+            var clipboard = new Clipboard('.btn', {
+                target: '#preview'
+            });
+            clipboard.on('success', function(e) {
+                console.info('Action:', e.action);
+                console.info('Text:', e.text);
+
+                e.clearSelection();
+            });
+
+            $('form').on('submit', function(e) {
+                e.preventDefault();
+                var signature = generateSignature() || 'Error occured during signature generation';
+
+                $('#preview').html(signature);
+                return false;
+            });
+        });
+    </script>
+</body>
+
+</html>
